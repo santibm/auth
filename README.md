@@ -32,6 +32,12 @@ php artisan vendor:publish --tag=auth:ci
 php artisan vendor:publish --tag=auth:migrations
 ```
 
+Optionally, you can also publish the translation files:
+
+```
+php artisan vendor:publish --tag=auth:translations
+```
+
 Next, run the migrations:
 
 ```php
@@ -83,6 +89,68 @@ class User extends Devdojo\Auth\Models\User
 
     // Existing User model code...
 }
+```
+
+## Internationalization (i18n)
+
+The DevDojo Auth package now supports multiple languages out of the box. By default, the package includes English and Spanish translations.
+
+### Supported Languages
+
+- English (en) - Default
+- Spanish (es)
+
+### Changing the Application Language
+
+To change the language of your authentication pages, simply set the locale in your Laravel application:
+
+```php
+// In your AppServiceProvider or middleware
+App::setLocale('es'); // For Spanish
+```
+
+You can also set the locale based on user preferences or browser settings:
+
+```php
+// Example: Set locale from session or user preference
+if (session()->has('locale')) {
+    App::setLocale(session('locale'));
+}
+```
+
+### Publishing and Customizing Translations
+
+If you want to customize the translations, you can publish the language files to your application:
+
+```bash
+php artisan vendor:publish --tag=auth:translations
+```
+
+This will copy the translation files to `lang/vendor/auth/` in your Laravel application, where you can modify them as needed.
+
+### Adding New Languages
+
+To add support for additional languages:
+
+1. Publish the translation files using the command above
+2. Copy one of the existing language directories (e.g., `lang/vendor/auth/en/`) 
+3. Rename it to your desired locale code (e.g., `lang/vendor/auth/fr/` for French)
+4. Translate the content in the `auth.php` file
+
+### Translation Keys
+
+All authentication pages support translation for:
+- Login page
+- Registration page  
+- Email verification page
+- Password reset request page
+- Password reset page
+- Password confirmation page
+- Two-factor authentication challenge page
+
+### Backward Compatibility
+
+The package maintains backward compatibility with the config-based language system. If you have customized the language strings in your `config/devdojo/auth/language.php` file, those will continue to work as fallbacks when translations are not found.
 ```
 
 ## License
