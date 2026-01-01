@@ -30,6 +30,7 @@ return [
         'already_have_an_account' => '¿Ya tienes una cuenta?',
         'sign_in' => 'Iniciar sesión',
         'button' => 'Continuar',
+        'registrations_disabled' => 'Los registros están actualmente deshabilitados.',
         'email_registration_disabled' => 'El registro por correo electrónico está actualmente deshabilitado. Por favor, usa el inicio de sesión social.',
     ],
     'verify' => [

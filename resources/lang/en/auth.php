@@ -30,6 +30,7 @@ return [
         'already_have_an_account' => 'Already have an account?',
         'sign_in' => 'Sign in',
         'button' => 'Continue',
+        'registrations_disabled' => 'Registrations are currently disabled.',
         'email_registration_disabled' => 'Email registration is currently disabled. Please use social login.',
     ],
     'verify' => [

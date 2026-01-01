@@ -2,6 +2,7 @@
 
 use Devdojo\Auth\Helper;
 use Illuminate\Support\Facades\App;
+use Livewire\Livewire;
 
 it('loads English translations by default', function () {
     App::setLocale('en');
