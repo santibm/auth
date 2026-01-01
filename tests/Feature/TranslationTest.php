@@ -116,3 +116,19 @@ it('Spanish translations have the same keys as English', function () {
         expect(array_keys($englishKeys))->toBe(array_keys($spanishTranslations[$section]));
     }
 });
+
+it('translates continue_with text correctly in English', function () {
+    App::setLocale('en');
+    
+    $translation = Helper::trans('auth::auth.login.continue_with', 'devdojo.auth.language.login.continue_with', 'Continue with');
+    
+    expect($translation)->toBe('Continue with');
+});
+
+it('translates continue_with text correctly in Spanish', function () {
+    App::setLocale('es');
+    
+    $translation = Helper::trans('auth::auth.login.continue_with', 'devdojo.auth.language.login.continue_with', 'Continue with');
+    
+    expect($translation)->toBe('Continuar con');
+});
