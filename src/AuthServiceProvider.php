@@ -29,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
         /*
          * Optional methods to load your package assets
          */
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'auth');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'auth');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'auth');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
@@ -41,6 +41,11 @@ class AuthServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../config/' => config_path('/'),
             ], 'auth:config');
+
+            // Publishing the translations.
+            $this->publishes([
+                __DIR__.'/../resources/lang' => $this->app->langPath('vendor/auth'),
+            ], 'auth:translations');
 
             // Publishing the views.
             /*$this->publishes([

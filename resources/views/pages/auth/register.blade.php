@@ -58,7 +58,7 @@ new class extends Component
         $this->loadConfigs();
 
         if (!$this->settings->registration_enabled) {
-            session()->flash('error', config('devdojo.auth.language.register.registrations_disabled', 'Registrations are currently disabled.'));
+            session()->flash('error', \Devdojo\Auth\Helper::trans('auth::auth.register.registrations_disabled', 'devdojo.auth.language.register.registrations_disabled', 'Registrations are currently disabled.'));
             redirect()->route('auth.login');
             return;
         }
@@ -88,12 +88,12 @@ new class extends Component
     public function register()
     {
         if (!$this->settings->registration_enabled) {
-            session()->flash('error', config('devdojo.auth.language.register.registrations_disabled', 'Registrations are currently disabled.'));
+            session()->flash('error', \Devdojo\Auth\Helper::trans('auth::auth.register.registrations_disabled', 'devdojo.auth.language.register.registrations_disabled', 'Registrations are currently disabled.'));
             return redirect()->route('auth.login');
         }
 
         if (!$this->settings->enable_email_registration) {
-            session()->flash('error', config('devdojo.auth.language.register.email_registration_disabled', 'Email registration is currently disabled. Please use social login.'));
+            session()->flash('error', \Devdojo\Auth\Helper::trans('auth::auth.register.email_registration_disabled', 'devdojo.auth.language.register.email_registration_disabled', 'Email registration is currently disabled. Please use social login.'));
             return redirect()->route('auth.register');
         }
 
@@ -146,7 +146,7 @@ new class extends Component
 
 ?>
 
-<x-auth::layouts.app title="{{ config('devdojo.auth.language.register.page_title') }}">
+<x-auth::layouts.app title="{{ \Devdojo\Auth\Helper::trans('auth::auth.register.page_title', 'devdojo.auth.language.register.page_title', 'Sign up') }}">
 
     @volt('auth.register')
     <x-auth::elements.container>
@@ -162,31 +162,31 @@ new class extends Component
         <form wire:submit="register" class="space-y-5">
 
             @if($showNameField)
-            <x-auth::elements.input :label="config('devdojo.auth.language.register.name')" type="text" wire:model="name" autofocus="true" required />
+            <x-auth::elements.input :label="\Devdojo\Auth\Helper::trans('auth::auth.register.name', 'devdojo.auth.language.register.name', 'Name')" type="text" wire:model="name" autofocus="true" required />
             @endif
 
             @if($showEmailField)
             @php
             $autofocusEmail = ($showNameField) ? false : true;
             @endphp
-            <x-auth::elements.input :label="config('devdojo.auth.language.register.email_address')" id="email" name="email" type="email" wire:model="email" data-auth="email-input" :autofocus="$autofocusEmail" autocomplete="email" required />
+            <x-auth::elements.input :label="\Devdojo\Auth\Helper::trans('auth::auth.register.email_address', 'devdojo.auth.language.register.email_address', 'Email Address')" id="email" name="email" type="email" wire:model="email" data-auth="email-input" :autofocus="$autofocusEmail" autocomplete="email" required />
             @endif
 
             @if($showPasswordField)
-            <x-auth::elements.input :label="config('devdojo.auth.language.register.password')" type="password" wire:model="password" id="password" name="password" data-auth="password-input" autocomplete="new-password" required />
+            <x-auth::elements.input :label="\Devdojo\Auth\Helper::trans('auth::auth.register.password', 'devdojo.auth.language.register.password', 'Password')" type="password" wire:model="password" id="password" name="password" data-auth="password-input" autocomplete="new-password" required />
             @endif
 
             @if($showPasswordConfirmationField)
-            <x-auth::elements.input :label="config('devdojo.auth.language.register.password_confirmation')" type="password" wire:model="password_confirmation" id="password_confirmation" name="password_confirmation" data-auth="password-confirmation-input" autocomplete="new-password" required />
+            <x-auth::elements.input :label="\Devdojo\Auth\Helper::trans('auth::auth.register.password_confirmation', 'devdojo.auth.language.register.password_confirmation', 'Confirm Password')" type="password" wire:model="password_confirmation" id="password_confirmation" name="password_confirmation" data-auth="password-confirmation-input" autocomplete="new-password" required />
             @endif
 
-            <x-auth::elements.button data-auth="submit-button" rounded="md" submit="true">{{config('devdojo.auth.language.register.button')}}</x-auth::elements.button>
+            <x-auth::elements.button data-auth="submit-button" rounded="md" submit="true">{{ \Devdojo\Auth\Helper::trans('auth::auth.register.button', 'devdojo.auth.language.register.button', 'Continue') }}</x-auth::elements.button>
         </form>
         @endif
 
         <div class="@if(config('devdojo.auth.settings.social_providers_location') != 'top' && $showEmailRegistration){{ 'mt-3' }}@endif space-x-0.5 text-sm leading-5 @if(config('devdojo.auth.settings.center_align_text')){{ 'text-center' }}@else{{ 'text-left' }}@endif" style="color:{{ config('devdojo.auth.appearance.color.text') }}">
-            <span class="opacity-[47%]">{{config('devdojo.auth.language.register.already_have_an_account')}}</span>
-            <x-auth::elements.text-link data-auth="login-link" href="{{ route('auth.login') }}">{{config('devdojo.auth.language.register.sign_in')}}</x-auth::elements.text-link>
+            <span class="opacity-[47%]">{{ \Devdojo\Auth\Helper::trans('auth::auth.register.already_have_an_account', 'devdojo.auth.language.register.already_have_an_account', 'Already have an account?') }}</span>
+            <x-auth::elements.text-link data-auth="login-link" href="{{ route('auth.login') }}">{{ \Devdojo\Auth\Helper::trans('auth::auth.register.sign_in', 'devdojo.auth.language.register.sign_in', 'Sign in') }}</x-auth::elements.text-link>
         </div>
 
         @if(config('devdojo.auth.settings.social_providers_location') != 'top')

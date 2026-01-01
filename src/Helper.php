@@ -58,4 +58,26 @@ class Helper
         // Return the RGB string
         return "$r $g $b";
     }
+
+    /**
+     * Get a translation string with fallback to config value.
+     * This ensures backward compatibility for users who have customized config files.
+     * 
+     * @param string $key The translation key (e.g., 'auth::auth.login.page_title')
+     * @param string|null $configKey The config key to fall back to (e.g., 'devdojo.auth.language.login.page_title')
+     * @param mixed $default Default value if neither translation nor config exists
+     * @return mixed
+     */
+    public static function trans($key, $configKey = null, $default = null)
+    {
+        // Try to get translation first
+        $translation = trans($key);
+        
+        // If translation doesn't exist (returns the key itself), try config
+        if ($translation === $key && $configKey !== null) {
+            return config($configKey, $default);
+        }
+        
+        return $translation !== $key ? $translation : $default;
+    }
 }
