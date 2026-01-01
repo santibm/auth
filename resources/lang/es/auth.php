@@ -17,6 +17,7 @@ return [
         'social_auth_authenticated_message' => 'Has sido autenticado a través de __social_providers_list__. Por favor, inicia sesión en esa red a continuación.',
         'change_email' => 'Cambiar correo electrónico',
         'couldnt_find_your_account' => 'No se pudo encontrar tu cuenta',
+        'continue_with' => 'Continuar con',
     ],
     'register' => [
         'page_title' => 'Registrarse',

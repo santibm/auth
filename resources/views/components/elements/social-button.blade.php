@@ -6,5 +6,5 @@
             <span class="block w-full h-full rounded-full bg-zinc-200"></span>
         @endif
     </span>
-    <span>Continue with {{ $provider->name }}</span>
+    <span>{{ \Devdojo\Auth\Helper::trans('auth::auth.login.continue_with', 'devdojo.auth.language.login.continue_with', 'Continue with') }} {{ $provider->name }}</span>
 </a>
