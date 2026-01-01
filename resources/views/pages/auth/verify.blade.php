@@ -35,7 +35,7 @@ new class extends Component
 
 ?>
 
-<x-auth::layouts.app title="{{ config('devdojo.auth.language.verify.page_title') }}">
+<x-auth::layouts.app title="{{ \Devdojo\Auth\Helper::trans('auth::auth.verify.page_title', 'devdojo.auth.language.verify.page_title', 'Verify Your Account') }}">
 
     @volt('auth.verify')
         <x-auth::elements.container>
@@ -52,20 +52,20 @@ new class extends Component
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                         </svg>
 
-                        <p>{{config('devdojo.auth.language.verify.new_link_sent')}}</p>
+                        <p>{{ \Devdojo\Auth\Helper::trans('auth::auth.verify.new_link_sent', 'devdojo.auth.language.verify.new_link_sent', 'A new link has been sent to your email address.') }}</p>
                     </div>
                 @endif
 
                 <div class="text-sm leading-6 text-gray-700 dark:text-gray-400">
-                    <p>{{config('devdojo.auth.language.verify.description')}} <a wire:click="resend" data-auth="verify-email-resend-link" class="text-gray-700 underline transition duration-150 ease-in-out cursor-pointer dark:text-gray-300 hover:text-gray-600 focus:outline-none focus:underline">{{config('devdojo.auth.language.verify.new_request_link')}}</a></p>
+                    <p>{{ \Devdojo\Auth\Helper::trans('auth::auth.verify.description', 'devdojo.auth.language.verify.description', 'Before proceeding, please check your email for a verification link. If you did not receive the email,') }} <a wire:click="resend" data-auth="verify-email-resend-link" class="text-gray-700 underline transition duration-150 ease-in-out cursor-pointer dark:text-gray-300 hover:text-gray-600 focus:outline-none focus:underline">{{ \Devdojo\Auth\Helper::trans('auth::auth.verify.new_request_link', 'devdojo.auth.language.verify.new_request_link', 'click here to request another') }}</a></p>
                 </div>
 
 
 
             <div class="mt-2 space-x-0.5 text-sm leading-5 text-center text-gray-600 translate-y-4 dark:text-gray-400">
-                <span>{{config('devdojo.auth.language.verify.or')}}</span>
+                <span>{{ \Devdojo\Auth\Helper::trans('auth::auth.verify.or', 'devdojo.auth.language.verify.or', 'Or') }}</span>
                 <button onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-gray-500 underline cursor-pointer dark:text-gray-400 dark:hover:text-gray-300 hover:text-gray-800">
-                  {{config('devdojo.auth.language.verify.logout')}}
+                  {{ \Devdojo\Auth\Helper::trans('auth::auth.verify.logout', 'devdojo.auth.language.verify.logout', 'click here to logout') }}
                 </button>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
